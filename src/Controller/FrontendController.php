@@ -13,6 +13,9 @@ class FrontendController extends AbstractController
 */
 public function index(): Response
 {
-return $this->render('index.html.twig');
+    $year = date('Y');
+    return $this->render('index.html.twig', [
+        'year' => $year,
+    ]);
 }
 }
