@@ -4,3 +4,10 @@ controllers:
         namespace: App\Controller
     type: annotation
 
+admin:
+    path: /admin
+    controller: App\Controller\DashboardController::index
+    methods: GET
+
+
+
