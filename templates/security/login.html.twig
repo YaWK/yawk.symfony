@@ -3,19 +3,37 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+    <style>body{ background-color: #ebebeb; } </style>
+    <script>
+        $(document).ready(function(){
+            $('.alert').delay(3000).fadeOut();
+        });
+    </script>
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="shadow mt-lg-5" style="margin-top: 3em;">
+                    <form method="post" class="form-control p-5">
+                        <h1><small>{{ host }}</small></h1>
+                        <h2 class="h3 mb-3 fw-normal">Login</h2>
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
 
-        <label for="inputEmail">Email:</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                    <!-- <label for="inputEmail">Email:</label> -->
+                    <input type="email" value="{{ last_username }}" placeholder="Email address" name="email" id="inputEmail" class="form-control" required autofocus>
+                    <!-- <label for="inputPassword">Password:</label> -->
+                    <input type="password" name="password" id="inputPassword" placeholder="Password" class="form-control mt-1" required>
 
-        <label for="inputPassword">Password:</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" required>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <button type="submit" class="btn btn-success mt-3 mb-3"><i class="fas fa-lock"></i> &nbsp;Sign in</button>
+                </form>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
 
-        <button type="submit" class="btn btn-primary">Sign in</button>
-    </form>
 {% endblock %}
