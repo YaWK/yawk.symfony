@@ -14,6 +14,10 @@ class AdminController extends AbstractController
      */
     public function dashboard(): Response
     {
-        return $this->render('admin/dashboard.html.twig');
+        $host = $_SERVER['HTTP_HOST'];
+        // return $this->render('admin/dashboard.html.twig');
+        return $this->render('admin/dashboard.html.twig', [
+            'host' => $host
+        ]);
     }
 }
