@@ -5,8 +5,13 @@
 {% block body %}
     <style>body{ background-color: #ebebeb; } </style>
     <script>
-        $(document).ready(function(){
-            $('.alert').delay(3000).fadeOut();
+        jQuery(document).ready(function(){
+            // if login btn is clicked, anonymous function:
+            jQuery("#loginForm").submit(function(){
+                // Disable the button
+                jQuery("#loginBtn").prop("disabled", true);
+                jQuery("#loginBtn").html('<i class="fas fa-spinner fa-spin disabled"></i> &nbsp;Signing in...'); // change button text
+            });
         });
     </script>
     <div class="container-fluid mt-5">
@@ -14,7 +19,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="shadow mt-lg-5" style="margin-top: 3em;">
-                    <form method="post" class="form-control p-5">
+                    <form method="post" id="loginForm" class="form-control p-5">
                         <h1><small>{{ host }}</small></h1>
                         <h2 class="h3 mb-3 fw-normal">Login</h2>
                     {% if error %}
@@ -28,7 +33,7 @@
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                    <button type="submit" class="btn btn-success mt-3 mb-3"><i class="fas fa-lock"></i> &nbsp;Sign in</button>
+                    <button id="loginBtn" type="submit" class="btn btn-success mt-3 mb-3"><i class="fas fa-lock"></i> &nbsp;Sign in</button>
                 </form>
                 </div>
             </div>
