@@ -17,7 +17,8 @@ class AdminController extends AbstractController
         $host = $_SERVER['HTTP_HOST'];
         // return $this->render('admin/dashboard.html.twig');
         return $this->render('admin/dashboard.html.twig', [
-            'host' => $host
+            'host' => $host,
+            'year' => date('Y')
         ]);
     }
 }
