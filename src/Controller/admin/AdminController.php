@@ -11,6 +11,7 @@ class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="admin_dashboard")
+     * @uses \App\Entity\User
      */
     public function dashboard(): Response
     {
@@ -18,7 +19,8 @@ class AdminController extends AbstractController
         // return $this->render('admin/dashboard.html.twig');
         return $this->render('admin/dashboard.html.twig', [
             'host' => $host,
-            'year' => date('Y')
+            'year' => date('Y'),
+            'username' => $this->getUser()->getUsername()
         ]);
     }
 }

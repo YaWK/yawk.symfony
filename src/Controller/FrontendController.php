@@ -8,9 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FrontendController extends AbstractController
 {
-/**
-* @Route("/", name="homepage")
-*/
 public function index(): Response
 {
     $year = date('Y');
