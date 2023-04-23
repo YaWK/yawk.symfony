@@ -10,9 +10,8 @@ class FrontendController extends AbstractController
 {
 public function index(): Response
 {
-    $year = date('Y');
     return $this->render('index.html.twig', [
-        'year' => $year,
+        'year' => date('Y')
     ]);
 }
 }
