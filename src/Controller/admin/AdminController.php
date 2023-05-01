@@ -16,8 +16,20 @@ class AdminController extends AbstractController
     public function dashboard(): Response
     {
         $host = $_SERVER['HTTP_HOST'];
-        // return $this->render('admin/dashboard.html.twig');
         return $this->render('admin/dashboard.html.twig', [
+            'host' => $host,
+            'year' => date('Y'),
+            'username' => $this->getUser()->getUsername()
+        ]);
+    }
+    /**
+     * @Route("/admin/users", name="admin_users")
+     * @uses \App\Entity\User
+     */
+    public function users(): Response
+    {
+        $host = $_SERVER['HTTP_HOST'];
+        return $this->render('admin/users.html.twig', [
             'host' => $host,
             'year' => date('Y'),
             'username' => $this->getUser()->getUsername()
